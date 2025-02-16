@@ -31,7 +31,7 @@ Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/ver
 # Brendon T3 Template
 
 ## TODO:
-- [ ] Make it deploy (vercel)
+- [x] Make it deploy (vercel)
 - [ ] Scaffold basic ui with mock data
 - [ ] set up a database (vercel postgres)
 - [ ] attach database to UI
