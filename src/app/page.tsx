@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { db } from "~/server/db";
+import type { posts } from "~/server/db/schema"; // Import the posts type
+import type { InferSelectModel } from "drizzle-orm";
 
 const mockUrls = [
   "https://gybih0c1ba.ufs.sh/f/w3thSjMmOXFxgo5ZuuxmhTP9Bqp035voV8WFJIdS2gXbDkit",
@@ -15,14 +17,27 @@ const mockImages = mockUrls.map((url, index) => ({
     url: url,
 }));
 
+// Define the Post type using Drizzle's InferSelectModel
+type Post = InferSelectModel<typeof posts>;
+
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
-  const posts = await db.query.posts.findMany();
-  console.log(posts);
+  // Initialize with the correct type
+  let posts: Post[] = [];
+  
+  try {
+    posts = await db.query.posts.findMany();
+    console.log(posts);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    // Continue with empty posts array
+  }
 
   return (
     <main className="">
         <div className="flex flex-wrap gap-4">
-          {posts.map((post) => (<div key={post.id}>{post.name}</div>))}
+          {posts.length > 0 && posts.map((post) => (<div key={post.id}>{post.name}</div>))}
           {[...mockImages, ...mockImages, ...mockImages,].map((image, index) => (
             <div key={`${image.id}-${Math.random()}`} className="w-[100px] h-[100px] relative">
               <Image 
