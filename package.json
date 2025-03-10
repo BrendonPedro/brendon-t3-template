@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build",
+    "build": "DISABLE_ESLINT_PLUGIN=true next build",
     "check": "next lint && tsc --noEmit",
     "db:generate": "drizzle-kit generate --config=drizzle-kit.config.ts",
     "db:migrate": "tsx src/server/db/migrate.ts",

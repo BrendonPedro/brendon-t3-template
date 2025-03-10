@@ -1,6 +1,5 @@
 // This page runs on the server only - I can make db and sql calls directly
 
-import Link from "next/link";
 import Image from "next/image";
 import { db } from "~/server/db";
 

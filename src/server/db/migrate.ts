@@ -7,7 +7,7 @@ import * as schema from "./schema";
 // This file is used for migrations
 async function main() {
   // Use DATABASE_URL_UNPOOLED if available, otherwise fall back to DATABASE_URL
-  const connectionString = env.DATABASE_URL_UNPOOLED || env.DATABASE_URL;
+  const connectionString = env.DATABASE_URL_UNPOOLED ?? env.DATABASE_URL;
   
   if (!connectionString) {
     throw new Error("No database connection string provided. Please set DATABASE_URL or DATABASE_URL_UNPOOLED in your environment variables.");
